@@ -55,7 +55,7 @@ LOOP:
 	BREQ	LOOP		//Si son iguales regresa al inicio.
 	//Agregar el delay
 	RJMP	DELAY
-2da.Read:
+LECTURA2:
 	//Volver a leer para ver si fue botonazo.
 	IN		R16, PIND	// Releer PUERTO D. para detectar si fue botonazo.
 	CP		R17, R16	//Comparar el estado anterior con el actual.
@@ -142,14 +142,4 @@ SUBDELAY2:
 	INC		R20
 	CPI		R20,0
 	BRNE	SUBDELAY2
-SUBDELAY3:
-	LDI		R20, 0
-	INC		R20
-	CPI		R20,0
-	BRNE	SUBDELAY3
-SUBDELAY4:
-	LDI		R20, 0
-	INC		R20
-	CPI		R20,0
-	BRNE	SUBDELAY4
-	RJMP	2da.Read
+	RJMP	LECTURA2
