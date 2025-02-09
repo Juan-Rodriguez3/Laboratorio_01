@@ -54,7 +54,7 @@ LOOP:
 	CP		R17,R16		//Comparar el estado anterior de los botones con el estado actual.
 	BREQ	LOOP		//Si son iguales regresa al inicio.
 	//Agregar el delay
-	CALL	DELAY
+	;CALL	DELAY
 	//Volver a leer para ver si fue botonazo.
 	IN		R16, PIND	// Releer PUERTO D. para detectar si fue botonazo.
 	CP		R17, R16	//Comparar el estado anterior con el actual.
