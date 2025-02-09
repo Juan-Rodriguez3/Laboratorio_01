@@ -36,12 +36,19 @@ SETUP:
 	LDI R16, 0x00
 	OUT PORTB, R16		//El puerto B conduce cero l?gico.
 
+	// Configurar Puerto C como salida y que conduzca cero l?gico
+	LDI R16, 0xFF
+	OUT DDRC, R16		// Seteamos todo el puerto C como salida
+	LDI R16, 0x00
+	OUT PORTC, R16		//El puerto C conduce cero l?gico.
+
 	// Guardar estado actual de los botones en R17 y el valor de la salida
 	LDI	R17, 0xFF		// 0b11111111
-	LDI R18, 0x00
+	LDI R18, 0x00		//Salida del primer contador
+	LDI R19, 0x00		//Salida del segundo contador
 	
 
-// LOOP
+//LOOP
 LOOP:
 	IN		R16,PIND	//Leer PUERTO D
 	CP		R17,R16		//Comparar el estado anterior de los botones con el estado actual.
@@ -55,56 +62,93 @@ LOOP:
 	//Actualizar el estado
 	MOV		R17, R16
 	//Salta si es 0
-	SBRS	R16,2		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
-	CALL	incrementar	//El bit 2 esta apachado Boton Azul
-	SBRS	R16,3		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
-	CALL	decrementar	//El bit 3 esta apachado Boton Verde
+	CALL	Contador1
+	CALL	Contador2
 	RJMP	LOOP
 
-incrementar:
+//Subrutinas
+Contador1:
+	SBRS	R16,2		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
+	CALL	incrementar1	//El bit 2 esta apachado Boton Azul
+	SBRS	R16,3		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
+	CALL	decrementar1	//El bit 3 esta apachado Boton Verde
+	RET
+
+Contador2:
+	SBRS	R16,4		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
+	CALL	incrementar2	//El bit 2 esta apachado Boton Azul
+	SBRS	R16,5		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
+	CALL	decrementar2	//El bit 3 esta apachado Boton Verde
+	RET
+
+//Contador 1
+incrementar1:
 	INC		R18			//Incrementar valor
 	CPI		R18, 0x10	//Comparar para ver si ocurre un acarreo.
 	BREQ	Reinicio1	//Reiniciar si hay overflow
+RETURNI1:
 	OUT		PORTB, R18  //Actualizar salida
-	RJMP	LOOP
+	RET
 Reinicio1:
 	LDI		R18, 0x00	//Reiniciar conteo
-	OUT		PORTB, R18	//Actualizar salida
-	RJMP	LOOP
+	RJMP	RETURNI1
 
-
-decrementar: 
+decrementar1: 
 	CPI		R18, 0x00	//Comparar para ver si ocurre un acarreo.
 	BREQ	Reinicio2	//Reiniciar si hay overflow
 	DEC		R18			//Decrementar valor
+RETURND1:
 	OUT		PORTB, R18	//Actualizar salida
-	RJMP	LOOP
+	RET
 Reinicio2:
 	LDI		R18, 0x0F	//Reiniciar conteo
-	OUT		PORTB, R18	//Actualizar salida.
-	RJMP	LOOP
+	RJMP	RETURND1
+
+//Contador 2
+incrementar2:
+	INC		R19			//Incrementar valor
+	CPI		R19, 0x10	//Comparar para ver si ocurre un acarreo.
+	BREQ	Reinicio3	//Reiniciar si hay overflow
+RETURNI2:
+	OUT		PORTC, R19  //Actualizar salida
+	RET
+Reinicio3:
+	LDI		R19, 0x00	//Reiniciar conteo
+	RJMP	RETURNI2
+
+decrementar2: 
+	CPI		R19, 0x00	//Comparar para ver si ocurre un acarreo.
+	BREQ	Reinicio4	//Reiniciar si hay overflow
+	DEC		R19		//Decrementar valor
+RETURND2:
+	OUT		PORTC, R19	//Actualizar salida
+	RET
+Reinicio4:
+	LDI		R19, 0x0F	//Reiniciar conteo
+	RJMP	RETURND2
 
 
 
 DELAY:
-	LDI		R19, 0
 	LDI		R20, 0
-	LDI		R21, 0
-	LDI		R22, 0
 SUBDELAY1:
-	INC		R19
-	CPI		R19,0
+	LDI		R20, 0
+	INC		R20
+	CPI		R20,0
 	BRNE	SUBDELAY1
 SUBDELAY2:
+	LDI		R20, 0
 	INC		R20
 	CPI		R20,0
 	BRNE	SUBDELAY2
 SUBDELAY3:
-	INC		R21
-	CPI		R21,0
+	LDI		R20, 0
+	INC		R20
+	CPI		R20,0
 	BRNE	SUBDELAY3
 SUBDELAY4:
-	INC		R22
-	CPI		R22,0
+	LDI		R20, 0
+	INC		R20
+	CPI		R20,0
 	BRNE	SUBDELAY4
 	RET

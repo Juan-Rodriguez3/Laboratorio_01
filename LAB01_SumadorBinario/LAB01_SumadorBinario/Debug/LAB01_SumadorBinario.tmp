@@ -1,0 +1,48 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\Debug\LAB01_SumadorBinario.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>LAB01_SumadorBinario.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>LAB01_SumadorBinario.map</FILE>
+  <FILE>LAB01_SumadorBinario.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <SETUP><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>25</LINE></SETUP>
+  <LOOP><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>52</LINE></LOOP>
+  <DELAY><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>132</LINE></DELAY>
+  <Contador1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>70</LINE></Contador1>
+  <Contador2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>77</LINE></Contador2>
+  <incrementar1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>85</LINE></incrementar1>
+  <decrementar1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>96</LINE></decrementar1>
+  <incrementar2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>108</LINE></incrementar2>
+  <decrementar2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>119</LINE></decrementar2>
+  <Reinicio1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>92</LINE></Reinicio1>
+  <RETURNI1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>89</LINE></RETURNI1>
+  <Reinicio2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>103</LINE></Reinicio2>
+  <RETURND1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>100</LINE></RETURND1>
+  <Reinicio3><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>115</LINE></Reinicio3>
+  <RETURNI2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>112</LINE></RETURNI2>
+  <Reinicio4><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>126</LINE></Reinicio4>
+  <RETURND2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>123</LINE></RETURND2>
+  <SUBDELAY1><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>134</LINE></SUBDELAY1>
+  <SUBDELAY2><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>139</LINE></SUBDELAY2>
+  <SUBDELAY3><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>144</LINE></SUBDELAY3>
+  <SUBDELAY4><FILE>C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm</FILE><LINE>149</LINE></SUBDELAY4>
+ </LABELS>
+</ASSEMBLER_INFO>
