@@ -70,16 +70,20 @@ LECTURA2:
 //Subrutinas
 Contador1:
 	SBRS	R16,2		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
-	CALL	incrementar1	//El bit 2 esta apachado Boton Azul
+	RJMP	incrementar1	//El bit 2 esta apachado Boton Azul
+A:
 	SBRS	R16,3		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
-	CALL	decrementar1	//El bit 3 esta apachado Boton Verde
+	RJMP	decrementar1	//El bit 3 esta apachado Boton Verde
+B:
 	RET
 
 Contador2:
 	SBRS	R16,4		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
-	CALL	incrementar2	//El bit 2 esta apachado Boton Azul
+	RJMP	incrementar2	//El bit 2 esta apachado Boton Azul
+C:
 	SBRS	R16,5		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
-	CALL	decrementar2	//El bit 3 esta apachado Boton Verde
+	RJMP	decrementar2	//El bit 3 esta apachado Boton Verde
+D:
 	RET
 
 //Contador 1
@@ -89,7 +93,7 @@ incrementar1:
 	BREQ	Reinicio1	//Reiniciar si hay overflow
 RETURNI1:
 	OUT		PORTB, R18  //Actualizar salida
-	RET
+	RJMP	A	
 Reinicio1:
 	LDI		R18, 0x00	//Reiniciar conteo
 	RJMP	RETURNI1
@@ -100,7 +104,7 @@ decrementar1:
 	DEC		R18			//Decrementar valor
 RETURND1:
 	OUT		PORTB, R18	//Actualizar salida
-	RET
+	RJMP	B
 Reinicio2:
 	LDI		R18, 0x0F	//Reiniciar conteo
 	RJMP	RETURND1
@@ -112,7 +116,7 @@ incrementar2:
 	BREQ	Reinicio3	//Reiniciar si hay overflow
 RETURNI2:
 	OUT		PORTC, R19  //Actualizar salida
-	RET
+	RJMP	C
 Reinicio3:
 	LDI		R19, 0x00	//Reiniciar conteo
 	RJMP	RETURNI2
@@ -123,7 +127,7 @@ decrementar2:
 	DEC		R19		//Decrementar valor
 RETURND2:
 	OUT		PORTC, R19	//Actualizar salida
-	RET
+	RJMP	D
 Reinicio4:
 	LDI		R19, 0x0F	//Reiniciar conteo
 	RJMP	RETURND2

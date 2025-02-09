@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm Sat Feb 08 23:58:09 2025
+AVRASM ver. 2.2.8  C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm Sun Feb 09 00:10:00 2025
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LAB01_SumadorBinario\main.asm(12): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1085,7 +1085,7 @@ C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LA
 000014 1710                      	CP		R17,R16		//Comparar el estado anterior de los botones con el estado actual.
 000015 f3e9                      	BREQ	LOOP		//Si son iguales regresa al inicio.
                                  	//Agregar el delay
-000016 c033                      	RJMP	DELAY
+000016 c02f                      	RJMP	DELAY
                                  LECTURA2:
                                  	//Volver a leer para ver si fue botonazo.
 000017 b109                      	IN		R16, PIND	// Releer PUERTO D. para detectar si fue botonazo.
@@ -1095,84 +1095,88 @@ C:\Users\josef\OneDrive\Documentos\Pepito\Laboratorio_01\LAB01_SumadorBinario\LA
 00001a 2f10                      	MOV		R17, R16
                                  	//Salta si es 0
 00001b 940e 0020                 	CALL	Contador1
-00001d 940e 0027                 	CALL	Contador2
+00001d 940e 0025                 	CALL	Contador2
 00001f cff3                      	RJMP	LOOP
                                  
                                  //Subrutinas
                                  Contador1:
 000020 ff02                      	SBRS	R16,2		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
-000021 940e 002e                 	CALL	incrementar1	//El bit 2 esta apachado Boton Azul
-000023 ff03                      	SBRS	R16,3		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
-000024 940e 0035                 	CALL	decrementar1	//El bit 3 esta apachado Boton Verde
-000026 9508                      	RET
+000021 c008                      	RJMP	incrementar1	//El bit 2 esta apachado Boton Azul
+                                 A:
+000022 ff03                      	SBRS	R16,3		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
+000023 c00d                      	RJMP	decrementar1	//El bit 3 esta apachado Boton Verde
+                                 B:
+000024 9508                      	RET
                                  
                                  Contador2:
-000027 ff04                      	SBRS	R16,4		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
-000028 940e 003c                 	CALL	incrementar2	//El bit 2 esta apachado Boton Azul
-00002a ff05                      	SBRS	R16,5		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
-00002b 940e 0043                 	CALL	decrementar2	//El bit 3 esta apachado Boton Verde
-00002d 9508                      	RET
+000025 ff04                      	SBRS	R16,4		//Revisando si el bit 2 no "esta apachado" = 1 l?gico.
+000026 c011                      	RJMP	incrementar2	//El bit 2 esta apachado Boton Azul
+                                 C:
+000027 ff05                      	SBRS	R16,5		//Revisando si el bit 3 no esta "apachado" = 1 l?gico.
+000028 c016                      	RJMP	decrementar2	//El bit 3 esta apachado Boton Verde
+                                 D:
+000029 9508                      	RET
                                  
                                  //Contador 1
                                  incrementar1:
-00002e 9523                      	INC		R18			//Incrementar valor
-00002f 3120                      	CPI		R18, 0x10	//Comparar para ver si ocurre un acarreo.
-000030 f011                      	BREQ	Reinicio1	//Reiniciar si hay overflow
+00002a 9523                      	INC		R18			//Incrementar valor
+00002b 3120                      	CPI		R18, 0x10	//Comparar para ver si ocurre un acarreo.
+00002c f011                      	BREQ	Reinicio1	//Reiniciar si hay overflow
                                  RETURNI1:
-000031 b925                      	OUT		PORTB, R18  //Actualizar salida
-000032 9508                      	RET
+00002d b925                      	OUT		PORTB, R18  //Actualizar salida
+00002e cff3                      	RJMP	A	
                                  Reinicio1:
-000033 e020                      	LDI		R18, 0x00	//Reiniciar conteo
-000034 cffc                      	RJMP	RETURNI1
+00002f e020                      	LDI		R18, 0x00	//Reiniciar conteo
+000030 cffc                      	RJMP	RETURNI1
                                  
                                  decrementar1: 
-000035 3020                      	CPI		R18, 0x00	//Comparar para ver si ocurre un acarreo.
-000036 f019                      	BREQ	Reinicio2	//Reiniciar si hay overflow
-000037 952a                      	DEC		R18			//Decrementar valor
+000031 3020                      	CPI		R18, 0x00	//Comparar para ver si ocurre un acarreo.
+000032 f019                      	BREQ	Reinicio2	//Reiniciar si hay overflow
+000033 952a                      	DEC		R18			//Decrementar valor
                                  RETURND1:
-000038 b925                      	OUT		PORTB, R18	//Actualizar salida
-000039 9508                      	RET
+000034 b925                      	OUT		PORTB, R18	//Actualizar salida
+000035 cfee                      	RJMP	B
                                  Reinicio2:
-00003a e02f                      	LDI		R18, 0x0F	//Reiniciar conteo
-00003b cffc                      	RJMP	RETURND1
+000036 e02f                      	LDI		R18, 0x0F	//Reiniciar conteo
+000037 cffc                      	RJMP	RETURND1
                                  
                                  //Contador 2
                                  incrementar2:
-00003c 9533                      	INC		R19			//Incrementar valor
-00003d 3130                      	CPI		R19, 0x10	//Comparar para ver si ocurre un acarreo.
-00003e f011                      	BREQ	Reinicio3	//Reiniciar si hay overflow
+000038 9533                      	INC		R19			//Incrementar valor
+000039 3130                      	CPI		R19, 0x10	//Comparar para ver si ocurre un acarreo.
+00003a f011                      	BREQ	Reinicio3	//Reiniciar si hay overflow
                                  RETURNI2:
-00003f b938                      	OUT		PORTC, R19  //Actualizar salida
-000040 9508                      	RET
+00003b b938                      	OUT		PORTC, R19  //Actualizar salida
+00003c cfea                      	RJMP	C
                                  Reinicio3:
-000041 e030                      	LDI		R19, 0x00	//Reiniciar conteo
-000042 cffc                      	RJMP	RETURNI2
+00003d e030                      	LDI		R19, 0x00	//Reiniciar conteo
+00003e cffc                      	RJMP	RETURNI2
                                  
                                  decrementar2: 
-000043 3030                      	CPI		R19, 0x00	//Comparar para ver si ocurre un acarreo.
-000044 f019                      	BREQ	Reinicio4	//Reiniciar si hay overflow
-000045 953a                      	DEC		R19		//Decrementar valor
+00003f 3030                      	CPI		R19, 0x00	//Comparar para ver si ocurre un acarreo.
+000040 f019                      	BREQ	Reinicio4	//Reiniciar si hay overflow
+000041 953a                      	DEC		R19		//Decrementar valor
                                  RETURND2:
-000046 b938                      	OUT		PORTC, R19	//Actualizar salida
-000047 9508                      	RET
+000042 b938                      	OUT		PORTC, R19	//Actualizar salida
+000043 cfe5                      	RJMP	D
                                  Reinicio4:
-000048 e03f                      	LDI		R19, 0x0F	//Reiniciar conteo
-000049 cffc                      	RJMP	RETURND2
+000044 e03f                      	LDI		R19, 0x0F	//Reiniciar conteo
+000045 cffc                      	RJMP	RETURND2
                                  
                                  
                                  
                                  DELAY:
-00004a e040                      	LDI		R20, 0
+000046 e040                      	LDI		R20, 0
                                  SUBDELAY1:
+000047 e040                      	LDI		R20, 0
+000048 9543                      	INC		R20
+000049 3040                      	CPI		R20,0
+00004a f7e1                      	BRNE	SUBDELAY1
+                                 SUBDELAY2:
 00004b e040                      	LDI		R20, 0
 00004c 9543                      	INC		R20
 00004d 3040                      	CPI		R20,0
-00004e f7e1                      	BRNE	SUBDELAY1
-                                 SUBDELAY2:
-00004f e040                      	LDI		R20, 0
-000050 9543                      	INC		R20
-000051 3040                      	CPI		R20,0
-000052 f7e1                      	BRNE	SUBDELAY2
+00004e f7e1                      	BRNE	SUBDELAY2
 
 
 RESOURCE USE INFORMATION
@@ -1203,7 +1207,7 @@ andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0
 brcc  :   0 brcs  :   0 break :   0 breq  :   6 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   6 cbi   :   0 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   2 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   2 cpc   :   0 
 cpi   :   6 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
@@ -1211,7 +1215,7 @@ fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   4 jmp   :   0
 ld    :   0 ldd   :   0 ldi   :  18 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   1 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  12 pop   :   0 
-push  :   0 rcall :   0 ret   :   6 reti  :   0 rjmp  :   7 rol   :   0 
+push  :   0 rcall :   0 ret   :   2 reti  :   0 rjmp  :  15 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   4 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
@@ -1222,7 +1226,7 @@ Instructions used: 14 out of 113 (12.4%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000a8    168      0    168   32768   0.5%
+[.cseg] 0x000000 0x0000a0    160      0    160   32768   0.5%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
